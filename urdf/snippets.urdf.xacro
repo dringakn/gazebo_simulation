@@ -87,7 +87,7 @@
         </joint>
     </xacro:macro>
 
-    <xacro:macro name="sensor_rgb_camera" params=" name:=cam parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=300 hfov:=60 xyz:='0 0 0'">
+    <xacro:macro name="sensor_rgb_camera" params=" name:=cam parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=100 hfov:=60 xyz:='0 0 0'">
         <xacro:shape_link name="${name}" type="box" m="0.05" w="0.05" l="0.05" h="0.05" rgba="1 0 0 1" color="Red"/>
         <xacro:shape_joint type="fixed" parent="${parent}" child="${name}" xyz="${xyz}"/>
         <gazebo reference="${name}">
@@ -430,7 +430,7 @@
             <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
                 <!-- Plugin update rate in Hz -->
                 <!-- <updateRate>${update_rate}</updateRate> -->
-                <updateRate>40</updateRate>
+                <updateRate>20</updateRate>
                 <!-- Name of left joint, defaults to `left_joint` -->
                 <leftJoint>${left}</leftJoint>
                 <!-- Name of right joint, defaults to `right_joint` -->
@@ -440,7 +440,7 @@
                 <!-- Diameter of the wheels, in meters, defaults to 0.15 m -->
                 <wheelDiameter>${d}</wheelDiameter>
                 <!-- Wheel acceleration, in rad/s^2, defaults to 0.0 rad/s^2 -->
-                <wheelAcceleration>1.0</wheelAcceleration>
+                <wheelAcceleration>0.0</wheelAcceleration>
                 <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
                 <wheelTorque>1</wheelTorque>
                 <!-- Topic to receive geometry_msgs/Twist message commands, defaults to `cmd_vel` -->
@@ -461,7 +461,7 @@
                 <publishWheelJointState>true</publishWheelJointState>
                 <!-- Set to true to swap right and left wheels, defaults to true -->
                 <legacyMode>true</legacyMode>
-                <rosDebugLevel>false</rosDebugLevel>
+                <rosDebugLevel>true</rosDebugLevel>
                 <publishOdomTF>true</publishOdomTF>
                 <publishTf>1</publishTf>
             </plugin>

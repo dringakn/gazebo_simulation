@@ -3,8 +3,7 @@ Panels:
     Help Height: 0
     Name: Displays
     Property Tree Widget:
-      Expanded:
-        - /Global Options1
+      Expanded: ~
       Splitter Ratio: 0.5264706015586853
     Tree Height: 157
   - Class: rviz/Selection
@@ -139,22 +138,19 @@ Visualization Manager:
       Show Axes: true
       Show Names: false
       Tree:
-        base_link:
-          chassis:
-            front_camera:
-              {}
-            front_castor:
-              {}
-            imu:
-              {}
-            left_wheel:
-              {}
-            right_wheel:
-              {}
-            velodyne_lidar:
-              {}
         odom:
-          {}
+          base_link:
+            chassis:
+              front_castor:
+                {}
+              imu:
+                front_camera:
+                  velodyne_lidar:
+                    {}
+              left_wheel:
+                {}
+              right_wheel:
+                {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -243,12 +239,12 @@ Visualization Manager:
     - Alpha: 0.25
       Class: rviz_plugin_tutorials/Imu
       Color: 204; 51; 204
-      Enabled: true
+      Enabled: false
       History Length: 1
       Name: Imu
       Topic: /imu
       Unreliable: false
-      Value: true
+      Value: false
     - Alpha: 1
       Class: rviz/Effort
       Enabled: true
@@ -317,8 +313,8 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 1.1560122966766357
-        Min Value: -0.18356561660766602
+        Max Value: 1.1554481983184814
+        Min Value: -0.05104762315750122
         Value: true
       Axis: Z
       Channel Name: intensity
