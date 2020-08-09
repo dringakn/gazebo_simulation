@@ -4,7 +4,7 @@
 
 ## Overview
 
-This repository contains a ROS package to simplify the robot URDF model creation process using XACRO snippets for the purpose of Gazebo simulation and robot model visulization inside ROS RViz.
+This repository contains a ROS (**melodic**) package to simplify the robot URDF model creation process using XACRO snippets for the purpose of Gazebo simulation and robot model visulization inside ROS RViz.
 
 ## Introduction
 
@@ -90,10 +90,9 @@ The following example launch file can be used to test the generated URDF file.
 roslaunch gazebeo_simulation test_urdf.launch
 ```
 
-http://wiki.ros.org/gazebo_ros
+The example launch file convert the XACRO robot model to URDF and load it to the ROS parameter server. It executes the RViz using the [rviz.launch](./launch/rviz.launch) file. The transform information between various links of the robot is published by the [robot state publisher](http://wiki.ros.org/robot_state_publisher) node. The node reads the robot model available at the parameter server and perodically publishes the transform messages. All the robot joints information is published by the [robot joint state publisher](http://wiki.ros.org/joint_state_publisher) node. This node publishes fake joint information. In case of real robot, the joint information is provided by the robot hardware.
 
-http://wiki.ros.org/robot_state_publisher
-http://wiki.ros.org/joint_state_publisher
+http://wiki.ros.org/gazebo_ros
 http://wiki.ros.org/octomap
 http://wiki.ros.org/teleop_twist_joy
 http://wiki.ros.org/teleop_twist_keyboard
