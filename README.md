@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains a ROS package to simplify the robot URDF model createion process using XACRO snippets for the purpose of Gazebo simulation and robot model visulization inside ROS RViz.
+This repository contains a ROS package to simplify the robot URDF model creation process using XACRO snippets for the purpose of Gazebo simulation and robot model visulization inside ROS RViz.
 
 ## Introduction
 
@@ -12,16 +12,18 @@ Unified Robot Description Format ([URDF](http://wiki.ros.org/urdf)) uses XML tag
 xacro filename.urdf.xacro -o filename.urdf
 ```
 
-The URDF files are used by ROS to display robot models inside RViz, furthermore, it can be used to create robot models to be simulated by Gazebo. In order to visulize the robot model in Rviz, the robot model URDF file is loaded as a parameter into the ros parameter server as follows.
+The URDF files are used by ROS to display robot models inside RViz, furthermore, it can be used to create robot models for Gazebo simulation.
+
+In order to visulize the robot model in Rviz, the robot URDF file is loaded as a parameter into the ros parameter server through the launch file as follows:
 
 ```
     <arg name="model" default="$(dirname)/../urdf/test_snippets.urdf.xacro"/>
     <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
 ```
 
-This package contains a collection of useful XACRO snippets created to simpliy the robot model creation for simulattion and visulization.
+This package contains a collection of useful XACRO snippets to simpliy the robot model creation process for simulattion and visulization purpose.
 
-For example in order to create a simple two wheel differential drive mobile robot equipped with a 3D LiDAR, a RGB color camera and an IMU sensor for the simulation and visulization purpose, following xacro files can the used:
+For example in order to create a simple two wheel differential drive mobile robot equipped with a 3D LiDAR, a RGB color camera and an IMU sensor following xacro file can the used:
 
 ```
 <?xml version="1.0"?>
