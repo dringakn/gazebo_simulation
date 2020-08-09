@@ -63,7 +63,8 @@ The `base_link` is a dummy link used as a reference for all other parts of the r
 
 The `front_castor` link's dynamic properties are set to be frictionless using the `castor_friction` macro.
 
-##Available Snippets
+## Available Snippets
+
 The user can simply include the [snippets file](./urdf/snippets.urdf.xacro) inside the robot model file in order to create links, joints and sensors for the robot. If the macro parameters are skipped then the default values are being used. Here is a brief summary of various snippets:
 
 **shape_link**
