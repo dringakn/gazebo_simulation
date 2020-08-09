@@ -2,11 +2,26 @@
 
 ## Overview
 
-This repository contains a ROS package to simplify the robot URDF model createion process for Gazebo simulation and RViz visulization using XACRO snippets.
+This repository contains a ROS package to simplify the robot URDF model createion process using XACRO snippets for the purpose of Gazebo simulation and robot model visulization inside ROS RViz.
 
 ## Introduction
 
-Unified Robot Description Format (URDF) uses XML tags for represnting robots. XACRO (Xml+mACRO) helps in creating parametrized URDF files. The URDF files can be used by ROS to display robot models inside RViz, furthermore, it can be used to create robot models to be used by Gazebo. This package contains a collection of useful XACRO snippets created to further simpliy the URDF creation. For example to create a robot model it is as simple as the following code [An example code file can be found within the urdf directory of the package](./urdf/test_snippets.urdf.xacro).
+Unified Robot Description Format ([URDF](http://wiki.ros.org/urdf)) uses XML tags to model various robot elements such as links, joint and sensors. [XACRO](http://wiki.ros.org/xacro)(Xml+mACRO) macros simplifies the robot model creation process by parametrizing the robot model files. The xacro file can be translated into the urdf file by using the following command.
+
+```
+xacro filename.urdf.xacro -o filename.urdf
+```
+
+The URDF files are used by ROS to display robot models inside RViz, furthermore, it can be used to create robot models to be simulated by Gazebo. In order to visulize the robot model in Rviz, the robot model URDF file is loaded as a parameter into the ros parameter server as follows.
+
+```
+    <arg name="model" default="$(dirname)/../urdf/test_snippets.urdf.xacro"/>
+    <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+```
+
+This package contains a collection of useful XACRO snippets created to simpliy the robot model creation for simulattion and visulization.
+
+For example in order to create a simple two wheel differential drive mobile robot equipped with a 3D LiDAR, a RGB color camera and an IMU sensor for the simulation and visulization purpose, following xacro files can the used:
 
 ```
 <?xml version="1.0"?>
@@ -32,12 +47,15 @@ Unified Robot Description Format (URDF) uses XML tags for represnting robots. XA
     <xacro:sensor_imu_ros name="imu" parent="chassis" topic="/imu" rate="20" noise="0" xyz="0 0 0.05" visulize="false"/>
     <xacro:sensor_rgb_camera name="front_camera" parent="imu" width="640" height="480" fps="10" xyz="0.15 0 0.15"/>
     <xacro:sensor_lidar_3d name="velodyne_lidar" parent="front_camera" topic="/velodyne_points" rate="20" noise="0" minRange="0.1" maxRange="100" samples="360" xyz="0 0 0.15" visulize="false"/>
-
 </robot>
 ```
 
+[The example code file can be found within the urdf directory of the package](./urdf/test_snippets.urdf.xacro).
+
 **Explanation**
-The above code create a simple two wheel differential drive mobile robot with a 3D LiDAR, a RGB camera and an IMU. The user can simply include the snippets file and use the sample macros to create various links, joints and attach sensors to the robot.
+The above code create a The user can simply include the snippets file and use the sample macros to create various links, joints and attach sensors to the robot.
+
+**Available Snippets**
 
 # Usage
 
@@ -64,3 +82,11 @@ The following example launch file can be used to test the generated URDF file.
 ```
 roslaunch gazebeo_simulation test_urdf.launch
 ```
+
+http://wiki.ros.org/gazebo_ros
+
+http://wiki.ros.org/robot_state_publisher
+http://wiki.ros.org/joint_state_publisher
+http://wiki.ros.org/octomap
+http://wiki.ros.org/teleop_twist_joy
+http://wiki.ros.org/teleop_twist_keyboard
