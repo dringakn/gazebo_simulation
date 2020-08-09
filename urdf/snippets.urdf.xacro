@@ -132,7 +132,7 @@
         </gazebo>
     </xacro:macro>
 
-    <xacro:macro name="sensor_stereo_camera" params=" name:=stereo parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=300 hfov:=60 xyz:='0 0 0'">
+    <xacro:macro name="sensor_stereo_camera" params=" name:=stereo parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=300 hfov:=60 xyz:='0 0 0' baseline:=0.07">
         <xacro:shape_link name="${name}" type="box" m="0.05" w="0.05" l="0.05" h="0.05" rgba="1 0 0 1" color="Red"/>
         <xacro:shape_joint type="fixed" parent="${parent}" child="${name}" xyz="${xyz}"/>
         <gazebo reference="${name}">
@@ -181,7 +181,7 @@
                     <imageTopicName>image_raw</imageTopicName>
                     <cameraInfoTopicName>camera_info</cameraInfoTopicName>
                     <frameName>left_camera_optical_frame</frameName>
-                    <hackBaseline>0.07</hackBaseline>
+                    <hackBaseline>${baseline}</hackBaseline>
                     <distortionK1>0.0</distortionK1>
                     <distortionK2>0.0</distortionK2>
                     <distortionK3>0.0</distortionK3>
@@ -192,7 +192,7 @@
         </gazebo>
     </xacro:macro>
 
-    <xacro:macro name="sensor_depth_camera" params=" name:=stereo parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=300 hfov:=60 xyz:='0 0 0'">
+    <xacro:macro name="sensor_depth_camera" params=" name:=stereo parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=300 hfov:=60 xyz:='0 0 0' baseline:=0.1">
         <xacro:shape_link name="${name}" type="box" m="0.05" w="0.05" l="0.05" h="0.05" rgba="1 0 0 1" color="Red"/>
         <xacro:shape_joint type="fixed" parent="${parent}" child="${name}" xyz="${xyz}"/>
         <gazebo reference="${name}">
@@ -217,7 +217,7 @@
                     </noise>
                 </camera>
                 <camera name="right">
-                    <pose>0 -0.07 0 0 0 0</pose>
+                    <pose>0 -${baseline} 0 0 0 0</pose>
                     <horizontal_fov>${radians(hfov)}</horizontal_fov>
                     <image>
                         <width>${width}</width>
@@ -235,7 +235,7 @@
                     </noise>
                 </camera>
                 <plugin name="depth_camera_controller" filename="libgazebo_ros_openni_kinect.so">
-                    <baseline>0.2</baseline>
+                    <baseline>${baseline}</baseline>
                     <alwaysOn>true</alwaysOn>
                     <updateRate>${fps}</updateRate>
                     <cameraName>${name}_ir</cameraName>
