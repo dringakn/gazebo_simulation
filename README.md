@@ -92,14 +92,14 @@ This macro is used to create a link for the color camera and attaches it to spec
 This macro is used to create a link for the stereo camera and attaches it to specified parent link.
 
 ```
-    <xacro:macro name="sensor_stereo_camera" params=" name:=stereo parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=300 hfov:=60 xyz:='0 0 0'">
+    <xacro:macro name="sensor_stereo_camera" params=" name:=stereo parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=300 hfov:=60 xyz:='0 0 0' baseline:=0.07">
 ```
 
 **sensor_depth_camera**
 This macro is used to create a link for the depth camera (such as kinect/realsense) and attaches it to specified parent link.
 
 ```
-    <xacro:macro name="sensor_depth_camera" params=" name:=stereo parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=300 hfov:=60 xyz:='0 0 0'">
+    <xacro:macro name="sensor_depth_camera" params=" name:=stereo parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=300 hfov:=60 xyz:='0 0 0' baseline:=0.1">
 ```
 
 **sensor_video**
