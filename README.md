@@ -1,5 +1,7 @@
 # URDF Snippets for ROS+Gazebo Simulation
 
+![Simulation](./.media/urdf_snippets_package.gif)
+
 ## Overview
 
 This repository contains a ROS package to simplify the robot URDF model creation process using XACRO snippets for the purpose of Gazebo simulation and robot model visulization inside ROS RViz.
