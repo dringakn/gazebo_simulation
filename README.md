@@ -53,9 +53,10 @@ For example in order to create a simple two wheel differential drive mobile robo
 [The example code file can be found within the urdf directory of the package](./urdf/test_snippets.urdf.xacro).
 
 **Explanation**
-The above code creates a simple robot model. The user can simply include the [snippets file](./urdf/snippets.urdf.xacro) to create robot links, joints and attach sensors to the robot. The robot has five links `base_link, chassis, left_wheel, right_wheel, front_castor`, four joints, three sensors and a controller.
+The above code creates the URDF model for the robot `Test_Robot`. The robot has five links `base_link, chassis, left_wheel, right_wheel, front_castor`, seven joints `joint_base_link_chassis, joint_chassis_left_wheel, joint_chassis_right_wheel, joint_chassis_front_castor, joint_chassis_imu, joint_imu_front_camera, and joint_front_camera_velodyne_lidar`, three sensors `imu, front_camera, velodyne_lidar` and a controller `robot_diff_drive`. Each link has dynamic properties such as mass and inertia associated with it. The inertia tensor is automatically calculated for each link using shape type, size and mass properties.
 
 **Available Snippets**
+The user can simply include the [snippets file](./urdf/snippets.urdf.xacro) to create robot links, joints and attach sensors to the robot.
 
 # Usage
 
