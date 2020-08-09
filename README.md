@@ -64,81 +64,111 @@ The `base_link` is a dummy link used as a reference for all other parts of the r
 The `front_castor` link's dynamic properties are set to be frictionless using the `castor_friction` macro.
 
 **Available Snippets**
-The user can simply include the [snippets file](./urdf/snippets.urdf.xacro) inside the robot model file in order to create links, joints and sensors for the robot. Here is a brief summary of various snippets:
+The user can simply include the [snippets file](./urdf/snippets.urdf.xacro) inside the robot model file in order to create links, joints and sensors for the robot. If the macro parameters are skipped then the default values are being used. Here is a brief summary of various snippets:
+
+**shape_link**
+This macros is used to create basic geometry shapes as link. The geometry shape is specified as `type` property of the macro with following possible values, `box, cylinder, sphere`. It creates the visual, inertial, and collision tags of the specified link
 
 ```
     <xacro:macro name="shape_link" params="name:=MyRobot type:=box m:=1 w:=1 l:=1 h:=1 r:=1 rgba:='0 0 0 1' xyz='0 0 0' rpy='0 0 0' color:=Red">
 ```
 
+**shape_joint**
+This macro is used to attach two links with the specified `type` of the joint. The joint can be any one of the following `fixed, floating, revolute, continuous, prismatic`. Axis specifies the axis of motion or rotation of the specified joint. In order to place the joint at the specified pose, `xyz` and `rpy` values can be used. The values are specified in metric units i.e. `m` and `rad`.
+
 ```
     <xacro:macro name="shape_joint" params="type:='fixed' parent:='p' child:='c' axis='0 0 0' xyz='0 0 0' rpy='0 0 0'">
 ```
 
-```
+**sensor_rgb_camera**
+This macro is used to create a link for the color camera and attaches it to specified parent link.
 
+```
     <xacro:macro name="sensor_rgb_camera" params=" name:=cam parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=100 hfov:=60 xyz:='0 0 0'">
 ```
 
-```
+**sensor_stereo_camera**
+This macro is used to create a link for the stereo camera and attaches it to specified parent link.
 
+```
     <xacro:macro name="sensor_stereo_camera" params=" name:=stereo parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=300 hfov:=60 xyz:='0 0 0'">
 ```
 
-```
+**sensor_depth_camera**
+This macro is used to create a link for the depth camera (such as kinect/realsense) and attaches it to specified parent link.
 
+```
     <xacro:macro name="sensor_depth_camera" params=" name:=stereo parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=300 hfov:=60 xyz:='0 0 0'">
 ```
 
-```
+**sensor_video**
+This macro is used to create a link for the video stream to be displayed inside gazebo and attaches it to specified parent link.
 
+```
     <xacro:macro name="sensor_video" params="link:=chassis width:=160 height:=120 topic:=image">
 ```
 
-```
+**sensor_bumper**
+This macro is used to create a link for the bumpber sensor and attaches it to specified parent link.
 
+```
     <xacro:macro name="sensor_bumper" params="name:=bumper rate:=20 frame:=world">
 ```
 
-```
+**sensor_imu_gazebo**
+This macro is used to create a link for an IMU sensor and attaches it to specified parent link. The acceleration output don't contains the gravitational acceleration.
 
+```
     <xacro:macro name="sensor_imu_gazebo" params="parent:=chassis name:=base_link topic:=imu rate:=20 noise:=0">
 ```
 
-```
+**sensor_imu_ros**
+This macro is used to create a link for an IMU sensor and attaches it to specified parent link. The acceleration output contains the gravitational acceleration.
 
+```
     <xacro:macro name="sensor_imu_ros" params="parent:=chassis name:=base_link topic:=imu rate:=20 noise:=0 xyz:='0 0 0' visulize:=true">
 ```
 
-```
+**sensor_laser_2d**
+This macro is used to create a link for a 2D laser ranger sensor, such as SICK/Hokuyo, and attaches it to specified parent link.
 
+```
     <xacro:macro name="sensor_laser_2d" params="parent:=chassis name:=laser topic:=/scan rate:=20 noise:=0 minRange:=0.1 maxRange:=100 samples:=360 xyz:='0 0 0' visulize:=true">
 ```
 
-```
+**sensor_lidar_3d**
+This macro is used to create a link for a 3D LIDAR range sensor, such as Velodyne, and attaches it to specified parent link.
 
+```
     <xacro:macro name="sensor_lidar_3d" params="parent:=chassis name:=base_link topic:=/velodyne_points rate:=20 noise:=0 minRange:=0.1 maxRange:=100 samples:=360 xyz:='0 0 0' visulize:=true">
 ```
 
-```
+**castor_friction**
+This macro is used to set the dynamic properties of the specified link as frictionless.
 
+```
     <xacro:macro name="castor_friction" params="name:=castor_wheel mu1:=0 mu2:=0 kp:=1e9 kd:=0 fdir:='0 0 0'">
 ```
 
-```
+**robot_drive_diff**
+This macro is used to attach a motion controller to the specified link.
 
+```
     <xacro:macro name="robot_drive_diff" params="chassis:=base_link left:=joint_chassis_left_wheel right:=joint_chassis_right_wheel l:=0.25 d:=0.1 cmdtopic:=cmd_vel odomtopic:=odom">
 ```
 
-```
+**robot_drive_skid_steer**
+This macro is used to attach a motion controller to the specified link.
 
+```
     <xacro:macro name="robot_drive_skid_steer" params="chassis:=base_link front_left:=joint_chassis_front_left_wheel front_right:=joint_chassis_front_right_wheel rear_left:=joint_chassis_rear_left_wheel rear_right:=joint_chassis_rear_right_wheel l:=0.25 d:=0.1 cmdtopic:=cmd_vel odomtopic:=odom">
 ```
 
+**robot_drive_plane**
+This macro is used to attach a motion controller to the specified link.
+
 ```
-
     <xacro:macro name="robot_drive_plane" params="chassis:=base_link odomtopic:=odom cmdtopic:=cmd_vel rate:=20">
-
-
 ```
 
 # Usage
