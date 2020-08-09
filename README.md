@@ -55,7 +55,9 @@ For example in order to create a simple two wheel differential drive mobile robo
 [The example code file can be found within the urdf directory of the package](./urdf/test_snippets.urdf.xacro).
 
 **Explanation**
-The above code creates the URDF model for a differential drive robot named `Test_Robot` in a very compact manner. The robot has **eight links** `base_link, chassis, left_wheel, right_wheel, front_castor, imu, front_camera, and velodyne_lidar`, **seven joints** `joint_base_link_chassis, joint_chassis_left_wheel, joint_chassis_right_wheel, joint_chassis_front_castor, joint_chassis_imu, joint_imu_front_camera, and joint_front_camera_velodyne_lidar`, **three sensors** `imu, front_camera, velodyne_lidar` and **a controller** `robot_diff_drive`. Each link has dynamic properties such as mass and inertia associated with it. The inertia tensor is automatically calculated for each link using shape type, size and mass properties.
+The above code creates the URDF model for a differential drive robot named `Test_Robot` in a very compact manner. The robot has **eight links** `base_link, chassis, left_wheel, right_wheel, front_castor, imu, front_camera, and velodyne_lidar`, **seven joints** `joint_base_link_chassis, joint_chassis_left_wheel, joint_chassis_right_wheel, joint_chassis_front_castor, joint_chassis_imu, joint_imu_front_camera, and joint_front_camera_velodyne_lidar`, **three sensors** `imu, front_camera, velodyne_lidar` and **a controller** `robot_diff_drive`.
+
+The `base_link` is a dummy link used as a reference for all other parts of the robot. The other four links are self explanatory. Three other links are created implicitly to represent three sensors. Similarly three joints are implicitly created to join these sensors to the robot. Each link has dynamic properties such as mass and inertia associated with it. The inertia tensor is automatically calculated for each link using shape type, size and mass properties.
 
 **Available Snippets**
 The user can simply include the [snippets file](./urdf/snippets.urdf.xacro) to create robot links, joints and attach sensors to the robot.
