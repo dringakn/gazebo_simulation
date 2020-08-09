@@ -53,7 +53,7 @@ For example in order to create a simple two wheel differential drive mobile robo
 [The example code file can be found within the urdf directory of the package](./urdf/test_snippets.urdf.xacro).
 
 **Explanation**
-The above code create a The user can simply include the snippets file and use the sample macros to create various links, joints and attach sensors to the robot.
+The above code creates a simple robot model. The user can simply include the [snippets file](./urdf/snippets.urdf.xacro) to create robot links, joints and attach sensors to the robot. The robot has five links `base_link, chassis, left_wheel, right_wheel, front_castor`, four joints, three sensors and a controller.
 
 **Available Snippets**
 
