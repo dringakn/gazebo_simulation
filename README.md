@@ -68,32 +68,73 @@ The user can simply include the [snippets file](./urdf/snippets.urdf.xacro) insi
 
 ```
     <xacro:macro name="shape_link" params="name:=MyRobot type:=box m:=1 w:=1 l:=1 h:=1 r:=1 rgba:='0 0 0 1' xyz='0 0 0' rpy='0 0 0' color:=Red">
+```
 
+```
     <xacro:macro name="shape_joint" params="type:='fixed' parent:='p' child:='c' axis='0 0 0' xyz='0 0 0' rpy='0 0 0'">
+```
+
+```
 
     <xacro:macro name="sensor_rgb_camera" params=" name:=cam parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=100 hfov:=60 xyz:='0 0 0'">
+```
+
+```
 
     <xacro:macro name="sensor_stereo_camera" params=" name:=stereo parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=300 hfov:=60 xyz:='0 0 0'">
+```
+
+```
 
     <xacro:macro name="sensor_depth_camera" params=" name:=stereo parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=300 hfov:=60 xyz:='0 0 0'">
+```
+
+```
 
     <xacro:macro name="sensor_video" params="link:=chassis width:=160 height:=120 topic:=image">
+```
+
+```
 
     <xacro:macro name="sensor_bumper" params="name:=bumper rate:=20 frame:=world">
+```
+
+```
 
     <xacro:macro name="sensor_imu_gazebo" params="parent:=chassis name:=base_link topic:=imu rate:=20 noise:=0">
+```
+
+```
 
     <xacro:macro name="sensor_imu_ros" params="parent:=chassis name:=base_link topic:=imu rate:=20 noise:=0 xyz:='0 0 0' visulize:=true">
+```
+
+```
 
     <xacro:macro name="sensor_laser_2d" params="parent:=chassis name:=laser topic:=/scan rate:=20 noise:=0 minRange:=0.1 maxRange:=100 samples:=360 xyz:='0 0 0' visulize:=true">
+```
+
+```
 
     <xacro:macro name="sensor_lidar_3d" params="parent:=chassis name:=base_link topic:=/velodyne_points rate:=20 noise:=0 minRange:=0.1 maxRange:=100 samples:=360 xyz:='0 0 0' visulize:=true">
+```
+
+```
 
     <xacro:macro name="castor_friction" params="name:=castor_wheel mu1:=0 mu2:=0 kp:=1e9 kd:=0 fdir:='0 0 0'">
+```
+
+```
 
     <xacro:macro name="robot_drive_diff" params="chassis:=base_link left:=joint_chassis_left_wheel right:=joint_chassis_right_wheel l:=0.25 d:=0.1 cmdtopic:=cmd_vel odomtopic:=odom">
+```
+
+```
 
     <xacro:macro name="robot_drive_skid_steer" params="chassis:=base_link front_left:=joint_chassis_front_left_wheel front_right:=joint_chassis_front_right_wheel rear_left:=joint_chassis_rear_left_wheel rear_right:=joint_chassis_rear_right_wheel l:=0.25 d:=0.1 cmdtopic:=cmd_vel odomtopic:=odom">
+```
+
+```
 
     <xacro:macro name="robot_drive_plane" params="chassis:=base_link odomtopic:=odom cmdtopic:=cmd_vel rate:=20">
 
