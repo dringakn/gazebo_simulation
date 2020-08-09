@@ -92,7 +92,10 @@ roslaunch gazebeo_simulation test_urdf.launch
 
 The example launch file convert the XACRO robot model to URDF and load it to the ROS parameter server. It executes the RViz using the [rviz.launch](./launch/rviz.launch) file. The transform information between various links of the robot is published by the [robot state publisher](http://wiki.ros.org/robot_state_publisher) node. The node reads the robot model available at the parameter server and perodically publishes the transform messages. All the robot joints information is published by the [robot joint state publisher](http://wiki.ros.org/joint_state_publisher) node. This node publishes fake joint information. In case of real robot, the joint information is provided by the robot hardware.
 
-http://wiki.ros.org/gazebo_ros
-http://wiki.ros.org/octomap
-http://wiki.ros.org/teleop_twist_joy
-http://wiki.ros.org/teleop_twist_keyboard
+The gazebo simulation is launched using [gazebo_ros](http://wiki.ros.org/gazebo_ros) package. This package loads a [sample world file](./world/turtlebot_playground.world) available in the world sub directory of the package. Afterwards it spawns the robot model using the URDF file.
+
+Finally, to send navigation commands to the robot, teleoperation through keyboard, [keyboard.launch](./launch/keyboard.launch) file is spawned which uses [teleop_twist_keyboard](http://wiki.ros.org/teleop_twist_keyboard) package.
+_optionally_ in order to command the robot using a joystick, [joy.launch](./launch/joy.launch) launch file is provided. It is based on the [teleop_twist_joy](http://wiki.ros.org/teleop_twist_joy) package.
+
+**Extra**
+In order to use the publish point cloud by the velodyne LIDAR, [octomap.launch](./launch/octomap.launch) file can be used which is based on the [package](http://wiki.ros.org/octomap).
