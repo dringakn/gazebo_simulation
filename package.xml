@@ -10,6 +10,7 @@
   <author email="dringakn@gmail.com">Dr. -Ing. Ahmad Kamal Nasir</author>
 
   <buildtool_depend>catkin</buildtool_depend>
+
   <build_depend>nav_msgs</build_depend>
   <build_depend>roscpp</build_depend>
   <build_depend>rospy</build_depend>
@@ -25,14 +26,16 @@
   <exec_depend>rospy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>tf</exec_depend>
-  <exec_depend>joy</exec_depend>
+
+  <!-- Package required for teleoperation and 3D mapping -->
   <exec_depend>teleop_twist_joy</exec_depend>
   <exec_depend>teleop_twist_keyboard</exec_depend>
   <exec_depend>octomap_server</exec_depend>
 
 
   <export>
-
+    <!-- Export package to Gazebo path -->
+    <gazebo_ros gazebo_media_path="${prefix}"/>
   </export>
 
 </package>
