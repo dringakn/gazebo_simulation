@@ -71,7 +71,8 @@ The user can simply include the [snippets file](./urdf/snippets.urdf.xacro) insi
 This macros is used to create basic geometry shapes as link. The geometry shape is specified as `type` property of the macro with following possible values, `box, cylinder, sphere`. It creates the visual, inertial, and collision tags of the specified link
 
 ```
-    <xacro:macro name="shape_link" params="name:=MyRobot type:=box m:=1 w:=1 l:=1 h:=1 r:=1 rgba:='0 0 0 1' xyz='0 0 0' rpy='0 0 0' color:=Red">
+    <xacro:macro name="shape_link" params="name:=MyRobot type:=box m:=1 w:=1 l:=1 h:=1 r:=1 rgba:='0 0 0 1' xyz='0 0 0' rpy='0 0 0' color:=Red mesh:=''">
+
 ```
 
 **shape_joint**

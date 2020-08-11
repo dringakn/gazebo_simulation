@@ -29,15 +29,20 @@
     <xacro:property name="shape_visual">
         <visual>
             <geometry>
-                <xacro:if value="${type == 'box'}">
-                    <box size="${w} ${l} ${h}"/>
+                <xacro:if value="${mesh == ''}">
+                    <xacro:if value="${type == 'box'}">
+                        <box size="${w} ${l} ${h}"/>
+                    </xacro:if>
+                    <xacro:if value="${type == 'cylinder'}">
+                        <cylinder radius="${r}" length="${h}"/>
+                    </xacro:if>
+                    <xacro:if value="${type == 'sphere'}">
+                        <sphere radius="${r}"/>
+                    </xacro:if>
                 </xacro:if>
-                <xacro:if value="${type == 'cylinder'}">
-                    <cylinder radius="${r}" length="${h}"/>
-                </xacro:if>
-                <xacro:if value="${type == 'sphere'}">
-                    <sphere radius="${r}"/>
-                </xacro:if>
+                <xacro:unless value="${mesh == ''}">
+                    <mesh filename="${mesh}"/>
+                </xacro:unless>
             </geometry>
             <material name="${rgba}">
                 <color rgba="${rgba}"/>
@@ -63,16 +68,18 @@
     </xacro:property>
 
     <!-- Shape Macro Link :w:x-axis, l:y-axis, h:z-axis, r:x-y plane -->
-    <xacro:macro name="shape_link" params="name:=MyRobot type:=box m:=1 w:=1 l:=1 h:=1 r:=1 rgba:='0 0 0 1' xyz='0 0 0' rpy='0 0 0' color:=Red">
+    <xacro:macro name="shape_link" params="name:=MyRobot type:=box m:=1 w:=1 l:=1 h:=1 r:=1 rgba:='0 0 0 1' xyz='0 0 0' rpy='0 0 0' color:=Red mesh:=''">
         <link name="${name}">
             <!-- <origin xyz="${xyz}" rpy="${rpy}"/> -->
             <xacro:insert_block name="shape_inertial"/>
             <xacro:insert_block name="shape_visual"/>
             <xacro:insert_block name="shape_collision"/>
         </link>
-        <gazebo reference="${name}">
-            <material>Gazebo/${color}</material>
-        </gazebo>
+        <xacro:if value="${mesh == ''}">
+            <gazebo reference="${name}">
+                <material>Gazebo/${color}</material>
+            </gazebo>
+        </xacro:if>
     </xacro:macro>
 
     <!-- Create a joint: type=fixed|continuous|revolute|planner|floating -->
