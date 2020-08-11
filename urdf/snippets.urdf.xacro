@@ -54,15 +54,20 @@
     <xacro:property name="shape_collision">
         <collision>
             <geometry>
-                <xacro:if value="${type == 'box'}">
-                    <box size="${w} ${l} ${h}"/>
+                <xacro:if value="${mesh == ''}">
+                    <xacro:if value="${type == 'box'}">
+                        <box size="${w} ${l} ${h}"/>
+                    </xacro:if>
+                    <xacro:if value="${type == 'cylinder'}">
+                        <cylinder radius="${r}" length="${h}"/>
+                    </xacro:if>
+                    <xacro:if value="${type == 'sphere'}">
+                        <sphere radius="${r}"/>
+                    </xacro:if>
                 </xacro:if>
-                <xacro:if value="${type == 'cylinder'}">
-                    <cylinder radius="${r}" length="${h}"/>
-                </xacro:if>
-                <xacro:if value="${type == 'sphere'}">
-                    <sphere radius="${r}"/>
-                </xacro:if>
+                <xacro:unless value="${mesh == ''}">
+                    <mesh filename="${mesh}"/>
+                </xacro:unless>
             </geometry>
         </collision>
     </xacro:property>
