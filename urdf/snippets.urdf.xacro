@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <!-- 
+    <!--
         Author: Dr. -Ing. Ahmad Kamal Nasir
         Email: dringakn@gmail.com
         Desciption: Xacro snippits for various URDF tags.
@@ -466,7 +466,7 @@
                 <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
                 <odometrySource>world</odometrySource>
                 <!-- Set to true to publish transforms for the wheel links, defaults to false -->
-                <publishWheelTF>true</publishWheelTF>
+                <publishWheelTF>false</publishWheelTF>
                 <!-- Set to true to publish transforms for the odometry, defaults to true -->
                 <publishOdom>true</publishOdom>
                 <!-- Set to true to publish sensor_msgs/JointState on /joint_states for the wheel joints, defaults to false -->
