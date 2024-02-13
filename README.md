@@ -193,6 +193,13 @@ catkin_make
 source devel/setup.bash
 ```
 
+For teleoperation of the robot, install following package
+```
+sudo apt install ros-<distro>-teleop-twist-keyboard
+e.g.
+sudo apt install ros-noetic-teleop-twist-keyboard
+```
+
 The following example launch file can be used to test the generated URDF file.
 
 ```
@@ -208,3 +215,4 @@ _optionally_ in order to command the robot using a joystick, [joy.launch](./laun
 
 **Extra**
 In order to use the publish point cloud by the velodyne LIDAR, [octomap.launch](./launch/octomap.launch) file can be used which is based on the [package](http://wiki.ros.org/octomap).
+
