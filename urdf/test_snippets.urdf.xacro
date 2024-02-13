@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- 
+<!--
         Author: Dr. -Ing. Ahmad Kamal Nasir
         Email: dringakn@gmail.com
         Description: To Generate the URDF file, use the following command
@@ -31,9 +31,5 @@
     <!-- <xacro:sensor_stereo_camera name="stereo_camera" parent="chassis" width="640" height="480" fps="10" xyz="0.15 0 0.05"/> -->
     <!-- <xacro:sensor_depth_camera name="kinect_camera" parent="chassis" width="640" height="480" fps="10" xyz="0.15 0 0.05"/> -->
     <!-- <xacro:sensor_video link="box1" width="160" height="120" topic="image"/> -->
-    <!-- 
-    <xacro:shape_link name="box1" type="box" m="1" w="1" l="1" h="1" rgba="0 0 1 ${alpha}" xyz="2 2 1" color="Blue"/>
-    <xacro:shape_joint type="floating" parent="base_link" child="box1" xyz="2 2 -1"/> 
-    -->
 
 </robot>
