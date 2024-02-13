@@ -7,10 +7,11 @@
         Desciption: Xacro snippits for various URDF tags.
     -->
 
+    <!-- Common properties -->
     <xacro:property name="alpha" value="0.5"/>
 
     <!-- Property Block: Shape Inertia, w:x-axis, l:y-axis, h:z-axis, r:x-y plane -->
-    <xacro:property name="shape_inertial">
+     <xacro:property name="shape_inertial">
         <inertial>
             <mass value="${m}"/>
             <xacro:if value="${type == 'box'}">
@@ -99,6 +100,9 @@
         </joint>
     </xacro:macro>
 
+    <!-- Sensor Macros -->
+
+    <!-- RGB Camera Sensor -->
     <xacro:macro name="sensor_rgb_camera" params=" name:=cam parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=100 hfov:=60 xyz:='0 0 0'">
         <xacro:shape_link name="${name}" type="box" m="0.05" w="0.05" l="0.05" h="0.05" rgba="1 0 0 1" color="Red"/>
         <xacro:shape_joint type="fixed" parent="${parent}" child="${name}" xyz="${xyz}"/>
@@ -144,6 +148,7 @@
         </gazebo>
     </xacro:macro>
 
+    <!-- Stereo Camera Sensor -->
     <xacro:macro name="sensor_stereo_camera" params=" name:=stereo parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=300 hfov:=60 xyz:='0 0 0' baseline:=0.07">
         <xacro:shape_link name="${name}" type="box" m="0.05" w="0.05" l="0.05" h="0.05" rgba="1 0 0 1" color="Red"/>
         <xacro:shape_joint type="fixed" parent="${parent}" child="${name}" xyz="${xyz}"/>
@@ -204,6 +209,7 @@
         </gazebo>
     </xacro:macro>
 
+    <!-- Depth Camera Sensor -->
     <xacro:macro name="sensor_depth_camera" params=" name:=stereo parent:=chassis width:=640 height:=480 fps:=10 visulize:=true near:=0.01 far:=300 hfov:=60 xyz:='0 0 0' baseline:=0.1">
         <xacro:shape_link name="${name}" type="box" m="0.05" w="0.05" l="0.05" h="0.05" rgba="1 0 0 1" color="Red"/>
         <xacro:shape_joint type="fixed" parent="${parent}" child="${name}" xyz="${xyz}"/>
@@ -274,6 +280,7 @@
         </gazebo>
     </xacro:macro>
 
+    <!-- Video Sensor -->
     <xacro:macro name="sensor_video" params="link:=chassis width:=160 height:=120 topic:=image">
         <gazebo reference="${link}">
             <visual>
@@ -286,6 +293,7 @@
         </gazebo>
     </xacro:macro>
 
+    <!-- Bumper Sensor -->
     <xacro:macro name="sensor_bumper" params="name:=bumper rate:=20 frame:=world">
         <gazebo>
             <plugin name="bumper_controller" filename="libgazebo_ros_bumper.so">
@@ -297,6 +305,7 @@
         </gazebo>
     </xacro:macro>
 
+    <!-- IMU Sensor (Gazebo) -->
     <xacro:macro name="sensor_imu_gazebo" params="parent:=chassis name:=base_link topic:=imu rate:=20 noise:=0">
         <!-- IMU plugin, without gravity -->
         <gazebo>
@@ -315,6 +324,7 @@
         </gazebo>
     </xacro:macro>
 
+    <!-- IMU Sensor (ROS) -->
     <xacro:macro name="sensor_imu_ros" params="parent:=chassis name:=base_link topic:=imu rate:=20 noise:=0 xyz:='0 0 0' visulize:=true">
         <!-- IMU plugin, with gravity -->
         <xacro:shape_link name="${name}" type="box" m="0.05" w="0.05" l="0.05" h="0.05" rgba="1 0 0 1" color="Red"/>
@@ -340,6 +350,7 @@
         </gazebo>
     </xacro:macro>
 
+    <!-- 2D Laser Sensor -->
     <xacro:macro name="sensor_laser_2d" params="parent:=chassis name:=laser topic:=/scan rate:=20 noise:=0 minRange:=0.1 maxRange:=100 samples:=360 xyz:='0 0 0' visulize:=true">
         <xacro:shape_link name="${name}" type="box" m="0.05" w="0.05" l="0.05" h="0.05" rgba="1 0 0 1" color="Red"/>
         <xacro:shape_joint type="fixed" parent="${parent}" child="${name}" xyz="${xyz}"/>
@@ -381,6 +392,7 @@
         </gazebo>
     </xacro:macro>
 
+    <!-- 3D Lidar Sensor -->
     <xacro:macro name="sensor_lidar_3d" params="parent:=chassis name:=base_link topic:=/velodyne_points rate:=20 noise:=0 minRange:=0.1 maxRange:=100 samples:=360 xyz:='0 0 0' visulize:=true">
         <xacro:shape_link name="${name}" type="box" m="0.05" w="0.05" l="0.05" h="0.05" rgba="1 0 0 1" color="Red"/>
         <xacro:shape_joint type="fixed" parent="${parent}" child="${name}" xyz="${xyz}"/>
@@ -425,6 +437,9 @@
         </gazebo>
     </xacro:macro>
 
+    <!-- Actuator Macros -->
+
+    <!-- Castor Wheel Friction -->
     <xacro:macro name="castor_friction" params="name:=castor_wheel mu1:=0 mu2:=0 kp:=1e9 kd:=0 fdir:='0 0 0'">
         <gazebo reference="${name}">
             <!-- Castor Wheel slippage -->
@@ -436,6 +451,7 @@
         </gazebo>
     </xacro:macro>
 
+    <!-- Robot Drive Differential -->
     <xacro:macro name="robot_drive_diff" params="chassis:=base_link left:=joint_chassis_left_wheel right:=joint_chassis_right_wheel l:=0.25 d:=0.1 cmdtopic:=cmd_vel odomtopic:=odom">
         <gazebo>
             <!-- Differential Drive Plugin -->
@@ -480,6 +496,7 @@
         </gazebo>
     </xacro:macro>
 
+    <!-- Robot Drive Skid Steer -->
     <xacro:macro name="robot_drive_skid_steer" params="chassis:=base_link front_left:=joint_chassis_front_left_wheel front_right:=joint_chassis_front_right_wheel rear_left:=joint_chassis_rear_left_wheel rear_right:=joint_chassis_rear_right_wheel l:=0.25 d:=0.1 cmdtopic:=cmd_vel odomtopic:=odom">
         <gazebo>
             <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">

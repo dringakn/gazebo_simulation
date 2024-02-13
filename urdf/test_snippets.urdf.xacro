@@ -1,17 +1,18 @@
 <?xml version="1.0"?>
 <!--
-        Author: Dr. -Ing. Ahmad Kamal Nasir
-        Email: dringakn@gmail.com
-        Description: To Generate the URDF file, use the following command
-                     xacro test_snippets.urdf.xacro -o test_snippets.urdf
+    Author: Dr. -Ing. Ahmad Kamal Nasir
+    Email: dringakn@gmail.com
+    Description: This URDF file defines the robot model for a simulated robot named "Test_Robot."
+                 To generate the URDF file, use the following command:
+                 xacro test_snippets.urdf.xacro -o test_snippets.urdf
 -->
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Test_Robot">
 
 
-    <!-- Include my custom URDF snippets for visual/inertia/links/joints tags -->
+    <!-- Include custom URDF snippets for visual, inertia, links, and joints tags -->
     <xacro:include filename="./snippets.urdf.xacro"/>
 
-    <!-- Create links: w:x-axis, l:y-axis, h:z-axis -->
+    <!-- Create robot links along the x, y, and z axes -->
     <link name="base_link"/>
     <xacro:shape_link name="chassis" type="box" m="1" w="0.4" l="0.2" h="0.05" rgba="0 0 1 ${alpha}" color="Blue"/>
     <xacro:shape_link name="left_wheel" type="cylinder" m="0.5" r="0.1" h="0.05" rgba="0 1 0 1" color="Green"/>
