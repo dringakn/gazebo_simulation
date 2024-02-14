@@ -14,7 +14,7 @@
 
     <!-- Create robot links along the x, y, and z axes -->
     <link name="base_link"/>
-    <xacro:shape_link name="chassis" type="box" m="1" w="0.4" l="0.2" h="0.05" rgba="0 0 1 ${alpha}" color="Blue"/>
+    <xacro:shape_link name="chassis" type="box" m="5" w="0.4" l="0.2" h="0.05" rgba="0 0 1 ${alpha}" color="Blue"/>
     <xacro:shape_link name="left_wheel" type="cylinder" m="0.5" r="0.1" h="0.05" rgba="0 1 0 1" color="Green"/>
     <xacro:shape_link name="right_wheel" type="cylinder" m="0.5" r="0.1" h="0.05" rgba="0 1 0 1" color="Green"/>
     <xacro:shape_link name="front_castor" type="sphere" m="0.1" r="0.05" rgba="1 0 0 1" color="Red"/>
