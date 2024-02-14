@@ -11,7 +11,7 @@
     <xacro:property name="alpha" value="0.5"/>
 
     <!-- Property Block: Shape Inertia, w:x-axis, l:y-axis, h:z-axis, r:x-y plane -->
-     <xacro:property name="shape_inertial">
+    <xacro:property name="shape_inertial">
         <inertial>
             <mass value="${m}"/>
             <xacro:if value="${type == 'box'}">
@@ -458,7 +458,7 @@
             <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
                 <!-- Plugin update rate in Hz -->
                 <!-- <updateRate>${update_rate}</updateRate> -->
-                <updateRate>20</updateRate>
+                <updateRate>50</updateRate>
                 <!-- Name of left joint, defaults to `left_joint` -->
                 <leftJoint>${left}</leftJoint>
                 <!-- Name of right joint, defaults to `right_joint` -->
