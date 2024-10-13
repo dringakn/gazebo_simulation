@@ -451,7 +451,9 @@
         </gazebo>
     </xacro:macro>
 
-    <!-- Robot Drive Differential -->
+    <!-- Robot Drive Differential: 
+    For mobile robots with two drive wheels (left and right), 
+    a common setup is a differential drive actuator. -->
     <xacro:macro name="robot_drive_diff" params="chassis:=base_link left:=joint_chassis_left_wheel right:=joint_chassis_right_wheel l:=0.25 d:=0.1 cmdtopic:=cmd_vel odomtopic:=odom">
         <gazebo>
             <!-- Differential Drive Plugin -->
