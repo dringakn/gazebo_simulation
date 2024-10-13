@@ -525,6 +525,11 @@
         </gazebo>
     </xacro:macro>
 
+    <!-- Planner Motion Drive:
+    This macro defines a planar drive mechanism for the robot, 
+    allowing movement in the XY plane (used in environments like 
+    2D simulations or flat surfaces where the robot is constrained 
+    to planar motion) -->
     <xacro:macro name="robot_drive_plane" params="chassis:=base_link odomtopic:=odom cmdtopic:=cmd_vel rate:=20">
         <gazebo>
             <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
