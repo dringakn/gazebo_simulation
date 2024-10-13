@@ -498,7 +498,14 @@
         </gazebo>
     </xacro:macro>
 
-    <!-- Robot Drive Skid Steer -->
+    <!-- Robot Drive Skid Steer:
+    This macro defines a skid-steer drive mechanism for a robot, 
+    typically used in differential steering robots like tanks, 
+    where each side's wheels are driven independently. 
+    It simulates a robot with 4 wheels: two on each side 
+    (front-left, front-right, rear-left, rear-right), 
+    which can be driven at different speeds to steer the robot.
+     -->
     <xacro:macro name="robot_drive_skid_steer" params="chassis:=base_link front_left:=joint_chassis_front_left_wheel front_right:=joint_chassis_front_right_wheel rear_left:=joint_chassis_rear_left_wheel rear_right:=joint_chassis_rear_right_wheel l:=0.25 d:=0.1 cmdtopic:=cmd_vel odomtopic:=odom">
         <gazebo>
             <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
