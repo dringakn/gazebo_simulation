@@ -6,7 +6,7 @@
                  To generate the URDF file, use the following command:
                  xacro test_snippets.urdf.xacro -o test_snippets.urdf
 -->
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Test_Robot">
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="Test_Robot">
 
 
     <!-- Include custom URDF snippets for visual, inertia, links, and joints tags -->
