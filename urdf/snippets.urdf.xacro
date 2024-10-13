@@ -597,6 +597,41 @@
 
     </xacro:macro>
 
+    <!-- Ackermann Drive (Ackermann Steering):
+    Ackermann drive system, which is commonly used for car-like 
+    steering robots. Ackermann steering model, allows for more 
+    realistic simulation of car-like steering where the front 
+    wheels pivot while the rear wheels propel the vehicle.
+    https://docs.ros.org/en/rolling/p/gazebo_plugins/generated/classgazebo__plugins_1_1GazeboRosAckermannDrive.html
+    -->
+    <xacro:macro name="robot_drive_ackermann" params="chassis:=base_link front_steer:=joint_chassis_front_steering rear_left:=joint_chassis_rear_left_wheel rear_right:=joint_chassis_rear_right_wheel wheelbase:=1.0 track:=0.5 wheel_radius:=0.15 cmdtopic:=/cmd_vel odomtopic:=/odom max_steering_angle:=0.5 max_speed:=2.0">
+        <gazebo>
+            <plugin name="ackermann_drive_controller" filename="libgazebo_ros_ackermann_drive.so">
+                <!-- Robot links and geometry -->
+                <robotBaseFrame>${chassis}</robotBaseFrame>
+                <steeringJoint>${front_steer}</steeringJoint>
+                <leftRearWheelJoint>${rear_left}</leftRearWheelJoint>
+                <rightRearWheelJoint>${rear_right}</rightRearWheelJoint>
+                <wheelBase>${wheelbase}</wheelBase>
+                <trackWidth>${track}</trackWidth>
+                <wheelRadius>${wheel_radius}</wheelRadius>
+
+                <!-- Control Topics -->
+                <commandTopic>${cmdtopic}</commandTopic>
+                <odometryTopic>${odomtopic}</odometryTopic>
+                
+                <!-- Limits and Control -->
+                <maxSteeringAngle>${max_steering_angle}</maxSteeringAngle> <!-- Maximum steering angle in radians -->
+                <maxSpeed>${max_speed}</maxSpeed>                         <!-- Maximum linear speed in meters per second -->
+                <updateRate>50</updateRate>                               <!-- Control update rate in Hz -->
+
+                <!-- Additional configurations -->
+                <publishOdometry>true</publishOdometry>                   <!-- Whether to publish odometry data -->
+                <publishWheelTF>false</publishWheelTF>                    <!-- Whether to publish wheel transforms -->
+            </plugin>
+        </gazebo>
+    </xacro:macro>
+
     <!-- Macro Template -->
     <!-- <xacro:macro name="robot_link" params="name:=MyRobot m:=1 w:=1 l:=1 h:=1 *first *second **vis **col **ine">
         <link name="${name}_macro">
