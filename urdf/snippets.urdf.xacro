@@ -542,6 +542,60 @@
         </gazebo>
     </xacro:macro>
 
+    <!-- Tricycle Drive:
+    The tricycle drive is typically used for robots with 
+    one front steering wheel and two rear driving wheels, 
+    similar to how a tricycle or a front-steering robot works -->
+    <xacro:macro name="robot_drive_tricycle" params="
+        chassis:=base_link
+        steering_joint:=front_steering_joint
+        drive_joint_left:=joint_rear_left_wheel
+        drive_joint_right:=joint_rear_right_wheel
+        wheelbase:=0.8
+        wheel_radius:=0.15
+        steering_limit:=0.78539816339  # ~45 degrees in radians
+        cmdtopic:=/cmd_vel
+        odomtopic:=/odom
+        update_rate:=50">
+
+        <gazebo>
+            <!-- Tricycle Drive Plugin -->
+            <plugin name="tricycle_drive_controller" filename="libgazebo_ros_tricycle_drive.so">
+                <!-- Name of the front steering joint -->
+                <steeringJoint>${steering_joint}</steeringJoint>
+                <!-- Names of the rear left and right drive joints -->
+                <driveLeftJoint>${drive_joint_left}</driveLeftJoint>
+                <driveRightJoint>${drive_joint_right}</driveRightJoint>
+                
+                <!-- Wheelbase: distance between the front steering wheel and the rear drive wheels -->
+                <wheelBase>${wheelbase}</wheelBase>
+                <!-- Wheel radius: radius of the rear drive wheels -->
+                <wheelRadius>${wheel_radius}</wheelRadius>
+                <!-- Maximum steering angle, in radians -->
+                <steeringLimit>${steering_limit}</steeringLimit>
+
+                <!-- Command topic to receive velocity commands -->
+                <commandTopic>${cmdtopic}</commandTopic>
+                <!-- Topic to publish odometry messages -->
+                <odometryTopic>${odomtopic}</odometryTopic>
+                <!-- The base frame of the robot (usually the chassis) -->
+                <robotBaseFrame>${chassis}</robotBaseFrame>
+                <!-- Update rate in Hz -->
+                <updateRate>${update_rate}</updateRate>
+
+                <!-- Odometry calculation mode: 0 for ENCODER, 1 for WORLD -->
+                <odometrySource>world</odometrySource>
+
+                <!-- Set to true to publish transforms for the wheel links, defaults to false -->
+                <publishWheelTF>true</publishWheelTF>
+                <!-- Set to true to publish transforms for the odometry, defaults to true -->
+                <publishOdomTF>true</publishOdomTF>
+                <!-- Set to true to swap right and left wheels, defaults to false -->
+                <legacyMode>false</legacyMode>
+            </plugin>
+        </gazebo>
+
+    </xacro:macro>
 
     <!-- Macro Template -->
     <!-- <xacro:macro name="robot_link" params="name:=MyRobot m:=1 w:=1 l:=1 h:=1 *first *second **vis **col **ine">
